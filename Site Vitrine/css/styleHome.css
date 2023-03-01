@@ -1,0 +1,705 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display:ital,wght@0,600;1,600&family=Space+Mono&display=swap');
+
+/***************************************** Réinitialisation des valeurs de base sur la mise en page ****************************************/
+/* Utilisation de la pseudo-classe :root pour définir des variables CSS */
+:root {
+  --black: #000;
+  --white: #fff;
+  --playfair-display: 'Playfair Display', serif;
+  --montserrat: 'Montserrat', sans-serif;
+  --main-color: #000;
+  --secondary-color: #fff;
+  --button-padding: 10px 40px;
+  --button-border-radius: 20px;
+  --button-font-size: 16px;
+}
+
+
+/* Utilisation de la propriété box-sizing pour avoir une boîte englobante avec la taille spécifiée, incluant la marge et le remplissage */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Utilisation des variables CSS pour la police */
+body {
+  font-family: var(--montserrat);
+}
+
+/* Utilisation des variables CSS pour le fond et les couleurs du texte, ainsi que pour la police et la taille de la police */
+nav {
+  background-color: var(--black);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+nav .logo {
+  width: 100px;
+}
+
+nav h1 {
+  color: var(--white);
+  font-family: var(--playfair-display);
+  font-size: 30px;
+}
+
+nav .onglets {
+  margin-top: 3px;
+  margin-left: 10%;
+}
+
+nav .onglets a {
+  text-decoration: none;
+  color: var(--white);
+  margin-right: 10px;
+  padding-bottom: 5px;
+}
+
+/*effet de soulignement progressif des éléments a de la div .onglets**/
+.onglets a {
+  position: relative;
+  text-decoration: none;
+  color: rgb(252, 251, 251);
+}
+
+.onglets a::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  background-color: rgb(248, 246, 246);
+  transition: width 0.3s ease-in-out;
+}
+
+.onglets a:hover::before {
+  width: 100%;
+}
+
+/* Utilisation des variables CSS pour la couleur de fond et la hauteur de l'en-tête */
+#entete {
+  height: 597px;
+  display: flex;
+  align-items: center;
+}
+
+/* Utilisation des variables CSS pour l'image de l'en-tête */
+#entete img {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 600px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Utilisation des variables CSS pour la présentation de l'en-tête */
+#entete .presentation {
+  position: relative;
+  z-index: 1;
+  margin-left: 5%;
+  width: 100%;
+}
+
+/* Utilisation des variables CSS pour les titres de l'en-tête */
+#entete h1,
+#entete h2 {
+  position: relative;
+  font-family: var(--playfair-display);
+  font-weight: bold;
+  color: var(--white);
+  padding-right: 50px;
+  padding-left: 220px;
+}
+
+#entete h1 {
+  font-size: 2.5em;
+  margin-top: 0.5em;
+}
+
+#entete h2 {
+  font-size: 1.5em;
+  font-style: italic;
+  margin-top: 20px;
+  padding-left: 150px;
+  padding-right: 50px;
+}
+
+/* Utilisation des variables CSS pour la phrase d'accroche */
+#phraseAccroche {
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+  margin-top: 0px;
+  background-color: var(--white);
+  box-sizing: border-box;
+}
+
+#phraseAccroche p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5em;
+  font-style: italic;
+  color: var(--black);
+  text-align: center;
+  padding: 5%;
+}
+
+/**************************************************************** Nos Produits ************************************************************/
+#container {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.Titre {
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.card,
+.bigcard {
+  border-radius: 50px;
+  margin: 50px 0;
+  transition: 800ms ease;
+  position: relative;
+}
+
+.card {
+  max-width: 200px;
+}
+
+.bigcard {
+  max-width: 300px;
+}
+
+.burger,
+.bigburger {
+  border-radius: 15px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.burger {
+  border: 3px solid #c51d03;
+}
+
+.bigburger {
+  border: 3px solid #ffffff;
+}
+
+.textburger {
+  color: #ffffff;
+  text-align: center;
+  font-size: 26px;
+  margin-top: 15px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 85%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #c51d03;
+  border-radius: 15px;
+}
+
+.descriptionburger {
+  color: white;
+  position: relative;
+  text-align: center;
+  line-height: 3;
+  list-style: none;
+  font-size: 100%;
+}
+
+.card:hover .overlay {
+  opacity: 0.8;
+}
+
+/************************************************************** Avatar cards *************************************************************/
+
+.avatars {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  justify-content: space-around;
+  align-items: end;
+  flex-wrap: wrap;
+  border-top: 12px solid white;
+}
+
+.avatars h2 {
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.avatar-card {
+  border: 2px solid red;
+  border-radius: 20px;
+  margin: 5%;
+}
+
+.avatar-card img {
+  height: 200px;
+  border-radius: 50px;
+  max-width: 200px;
+  margin-bottom: 15%;
+  position: relative;
+}
+
+.avatar-card p {
+  font-family: var(--montserrat);
+  font-size: large;
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+  justify-content: center;
+  height: 20px;
+  margin-top: -5%;
+  margin-right: 2%;
+  padding-bottom: 25%;
+}
+
+
+/**************************************************************** Footer *****************************************************************/
+footer {
+  width: 100%;
+  height: 450px;
+  border-top: 2px solid #fff;
+  background-color: #000;
+  color: #fff;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer h2 {
+  font: 700 28px/1.2 'Playfair Display', sans-serif;
+  border-bottom: 1px solid #fff;
+  width: 20%;
+  margin: 20px 0 0 50px;
+  padding-bottom: 5px;
+  align-self: flex-start;
+}
+
+footer .services {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 93%;
+  height: 88%;
+  margin-top: 12px;
+  flex-wrap: nowrap;
+}
+
+footer .services .service {
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+footer .services .service p {
+  width: 200px;
+  margin-top: 10px;
+}
+
+footer .informations {
+  align-self: flex-end;
+  height: 130px;
+  margin-left: -44%;
+  width: 320px;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: 42%;
+  height: 100%;
+  margin-right: 53px;
+}
+
+.social-media .back-to-top {
+  margin-bottom: 64px;
+}
+
+.social-media h3 {
+  font: 700 20px/1.2 'Playfair Display', sans-serif;
+  margin-bottom: 10px;
+}
+
+.social-media .icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.social-media .icons a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  margin-left: 11%;
+}
+
+
+.social-media .icons img {
+  width: 3rem;
+  /* Utiliser rem à la place de px */
+}
+
+footer .button {
+  margin-top: 10px;
+  margin-bottom: 63px;
+  padding: 10px 40px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+footer .button a {
+  text-decoration: none;
+  color: #000;
+}
+
+footer .location {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 30px;
+  max-width: 80%;
+}
+
+footer .location h3 {
+  font-family: 'Playfair Display', sans-serif;
+  margin-right: 10px;
+}
+
+footer .location p {
+  font-size: 14px;
+}
+
+footer .location .map {
+  width: 350px;
+  border-radius: 60px;
+  margin-top: -10px;
+  margin-left: 60px;
+}
+
+
+/**************************************************************** Media queries ***********************************************************/
+@media screen and (max-width: 1024px) {
+
+  main {
+    flex-direction: column;
+  }
+
+  .card,
+  .bigcard {
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+
+  .burger,
+  .bigburger {
+    width: 150px;
+  }
+
+  .textburger {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .overlay {
+    height: 87%;
+  }
+
+  .descriptionburger {
+    font-size: 10px;
+  }
+
+  footer {
+    height: auto;
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  footer h2 {
+    font-size: 24px;
+    width: 100%;
+    margin: 0 0 30px;
+    text-align: center;
+    align-self: center;
+  }
+
+  footer .services {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  footer .services .service {
+    margin-right: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  footer .services .service p {
+    margin: 10px 0 0;
+    width: 100%;
+  }
+
+  footer .informations {
+    margin-top: 50px;
+    margin-left: 0;
+    align-self: center;
+    text-align: center;
+    height: auto;
+  }
+
+  .social-media {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 42%;
+    height: 100%;
+    margin-right: 53px;
+  }
+
+  .social-media {
+    width: 100%;
+    margin: 30px 0;
+  }
+
+  .social-media h3 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .social-media .icons {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .social-media .icons a {
+    margin: 0 10px;
+  }
+
+  footer .button {
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+
+  footer .location {
+    justify-content: center;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  footer .location h3 {
+    margin-right: 5px;
+    font-size: 16px;
+  }
+
+  footer .location p {
+    font-size: 12px;
+  }
+
+  footer .location .map {
+    width: 100%;
+    margin-top: 30px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  nav {
+    background-color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav .logo {
+    width: 80px;
+  }
+
+  nav h1 {
+    color: #fff;
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 30px;
+  }
+
+  nav .onglets {
+    margin-top: 3px;
+    margin-left: 15%;
+  }
+
+  nav .onglets a {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 10px;
+    padding-bottom: 5px;
+  }
+
+  #entete {
+    height: 572px;
+    display: flex;
+    align-items: center;
+  }
+
+  #entete img {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  #entete h1,
+  #entete h2 {
+    font-size: 1.8em;
+    padding-left: 100px;
+    padding-right: 50px;
+  }
+
+  #entete h2 {
+    font-size: 1.2em;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .overlay {
+    height: 87%;
+  }
+
+  .descriptionburger {
+    font-size: 10px;
+  }
+
+  .burger,
+  .bigburger {
+    width: 120px;
+  }
+
+  .textburger {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  #phraseAccroche {
+    padding-top: 11% ;
+  }
+
+  #phraseAccroche p {
+    font-size: 1.2em;
+    padding-top: 5%;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centre les éléments horizontalement */
+    justify-content: flex-start;
+    /* Aligne les éléments en haut de la nav */
+    width: 100%;
+  }
+
+  nav .logo {
+    align-self: flex-start;
+    margin-top: 3%;
+    /* Aligne le logo à gauche */
+  }
+
+  nav .onglets {
+    margin-top: 11%;
+    font-size: 12px;
+  }
+
+  .overlay {
+    height: 87%;
+  }
+
+  .descriptionburger {
+    font-size: 10px;
+  }
+
+  .avatar-card img{
+    height: 120px;
+  }
+
+  .field-small {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  footer .location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer .location .map {
+    margin-left: 0;
+    max-width: 90%;
+  }
+
+  footer .button {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+
+  footer .services {
+    height: auto;
+    width: 80%;
+    margin-top: 30px;
+  }
+
+  footer .services .service {
+    margin: 0 0 30px;
+  }
+
+  footer .services .service p {
+    margin-top: 10px;
+  }
+
+  .social-media {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
